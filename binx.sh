@@ -37,5 +37,12 @@ chmod +x $FILE
 
 # Copy to bin dir
 EXNAME=$(basename $SCRIPT $EXT)  # trim file extension
-sudo cp $FILE $BINDIR/$EXNAME
+CP_RESULT=$(sudo cp -i -v $FILE $BINDIR/$EXNAME)
+
+# Print outcome and exit
+if [ -z "$CP_RESULT" ]
+  then
+    echo "Aborted!"
+    exit 0
+fi
 echo "Copied to $BINDIR as $EXNAME"
